@@ -1,0 +1,141 @@
+use("courts");
+db.members.find({ _id: ObjectId("66a16d04f9e1d01e1fc0bd8f") })
+
+// db.members.aggregate([
+//     {
+//         $match: { _id: ObjectId("66a169e7f6e33316c0486f85") }
+//     },
+//     {
+//         $lookup: {
+//             from: 'users',
+//             localField: 'accountId',
+//             foreignField: '_id',
+//             pipeline: [
+//                 {
+//                     $project: {
+//                         _id: 0
+//                     }
+//                 }
+//             ],
+//             as: 'userAccount'
+//         }
+//     },
+//     {
+//         $lookup: {
+//             from: 'admins',
+//             localField: 'accountId',
+//             foreignField: '_id',
+//             pipeline: [
+//                 {
+//                     $project: {
+//                         _id: 0
+//                     }
+//                 }
+//             ],
+//             as: 'adminAccount'
+//         }
+//     },
+//     {
+//         $addFields: {
+//             accountInfo: {
+//                 $cond: {
+//                     if: { $eq: ['$accountType', 'users'] },
+//                     then: { $arrayElemAt: ['$userAccount', 0] },
+//                     else: { $arrayElemAt: ['$adminAccount', 0] }
+//                 }
+//             }
+//         }
+//     },
+//     {
+//         $project: {
+//           memberId: "$_id",
+//           _id: 0,
+//           username: 1,
+//           email: 1,
+//           accountId: 1,
+//           accountType: 1,
+//           accountInfo: 1,
+//           token: 1
+//         }
+//     }
+// ])
+
+
+// MoneyCanchas
+// const username = 'MoneyCanchas';
+// const email = 'geovanyojeda14@gmail.com';
+// const password = 'alga de mar';
+
+// db.members.findOne({ 
+//     $or: [
+//         { username, password },
+//         { email, password }
+//     ]
+//  }, { _id: 1, accountType: 1 });
+
+// db.members.aggregate([
+//     {
+//         $match: {
+            // $or: [
+            //     { username, password },
+            //     { email, password }
+            // ]
+//         }
+//     },
+//     {
+//         $limit: 1
+//     },
+//     {
+//         $lookup: {
+//             from: 'users',
+//             localField: 'accountId',
+//             foreignField: '_id',
+//             pipeline: [
+//                 {
+//                     $project: {
+//                         _id: 0
+//                     }
+//                 }
+//             ],
+//             as: 'userAccount'
+//         }
+//     },
+//     {
+//         $lookup: {
+//             from: 'admins',
+//             localField: 'accountId',
+//             foreignField: '_id',
+//             pipeline: [
+//                 {
+//                     $project: {
+//                         _id: 0
+//                     }
+//                 }
+//             ],
+//             as: 'adminAccount'
+//         }
+//     },
+//     {
+//         $addFields: {
+//             accountInfo: {
+//                 $cond: {
+//                     if: { $eq: ['$accountType', 'users'] },
+//                     then: { $arrayElemAt: ['$userAccount', 0] },
+//                     else: { $arrayElemAt: ['$adminAccount', 0] }
+//                 }
+//             }
+//         }
+//     },
+//     {
+//         $project: {
+//           memberId: "$_id",
+//           _id: 0,
+//           username: 1,
+//           email: 1,
+//           accountId: 1,
+//           accountType: 1,
+//           accountInfo: 1,
+//           token: 1
+//         }
+//     }
+// ]);
